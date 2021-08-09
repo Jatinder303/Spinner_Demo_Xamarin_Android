@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Spinner_Demo_Xamarin_Android</string>
+    <string name="action_settings">Settings</string>
+	<string-array name="City_Names">
+		<item>Hamilton</item>
+		<item>Auckland</item>
+		<item>Christchurch</item>
+		<item>Wellington</item>
+	</string-array>
+</resources>
