@@ -27,5 +27,13 @@
         android:layout_height="249dp"
         android:layout_x="35dp"
         android:layout_y="161dp" />
+
+        <TextView
+        android:id="@+id/DetailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected City Detail"
+        android:layout_x="123dp"
+        android:layout_y="45dp" />
 </LinearLayout>
 </RelativeLayout>

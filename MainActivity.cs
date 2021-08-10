@@ -6,6 +6,7 @@ using System;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+using System.IO;
 
 namespace Spinner_Demo_Xamarin_Android
 {
@@ -14,6 +15,7 @@ namespace Spinner_Demo_Xamarin_Android
     {
         Spinner spCity;
         ImageView imgCity;
+        TextView detailCity;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,13 +28,13 @@ namespace Spinner_Demo_Xamarin_Android
 
             spCity = FindViewById<Spinner>(Resource.Id.spCity);
             imgCity = FindViewById<ImageView>(Resource.Id.imgCity);
-
-            spCity.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-
+            detailCity = FindViewById<TextView>(Resource.Id.DetailText);
 
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.City_Names, Android.Resource.Layout.SimpleSpinnerItem);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spCity.Adapter = adapter;
+
+            spCity.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
         }
         public void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -41,18 +43,29 @@ namespace Spinner_Demo_Xamarin_Android
             if (String.Format("{0}", spinner.GetItemAtPosition(e.Position)) == "Hamilton")
             {
                 imgCity.SetImageResource(Resource.Drawable.hamilton);
+                string content;
+                using (StreamReader sr = new StreamReader(Assets.Open("Hamilton.txt")))
+                {
+                    content = sr.ReadToEnd();
+                }
+
+                detailCity.Text = content;
+
             }
             else if (String.Format("{0}", spinner.GetItemAtPosition(e.Position)) == "Auckland")
             {
                 imgCity.SetImageResource(Resource.Drawable.auckland);
+                detailCity.Text = "Selected City Detail";
             }
             else if (String.Format("{0}", spinner.GetItemAtPosition(e.Position)) == "Christchurch")
             {
                 imgCity.SetImageResource(Resource.Drawable.christchurch);
+                detailCity.Text = "Selected City Detail";
             }
             else if (String.Format("{0}", spinner.GetItemAtPosition(e.Position)) == "Wellington")
             {
                 imgCity.SetImageResource(Resource.Drawable.wellington);
+                detailCity.Text = "Selected City Detail";
             }
 
         }
