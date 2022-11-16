@@ -13,7 +13,7 @@ namespace Spinner_Demo_Xamarin_Android
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        Spinner spCity;
+        Spinner spCity, abc;
         ImageView imgCity;
         TextView detailCity;
         protected override void OnCreate(Bundle savedInstanceState)
